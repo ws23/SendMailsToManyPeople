@@ -1,0 +1,36 @@
+/*使用說明：
+# 需在要使用的 spreadsheet 當中使用此 script
+*/
+
+function readData() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  
+  for (var i = 1; i < data.length; i++) {
+    var done = sheet.getRange(i+1, 1).getValue();
+    var yourName = sheet.getRange(i+1, 2).getValue();
+    var yourMail = sheet.getRange(i+1, 3).getValue();
+    var yourTeam = sheet.getRange(i+1, 4).getValue();
+    var yourLeader = sheet.getRange(i+1, 5).getValue();
+    var yourMember = sheet.getRange(i+1, 6).getValue();
+    
+    if(done=="v")
+      continue;
+    if(done=="-")
+      break;
+    
+    var title = "TEST Mail";
+    var msg = 
+        "This is a test\n" +
+        "Name: " + yourName + "\n" +
+        "Mail: " + yourMail + "\n" +
+        "Team: " + yourTeam + "\n" +
+        "Lead: " + yourLeader + "\n" + 
+        "Member: " + yourMember + "\n" + 
+        "Thank!!" ;
+         
+    MailApp.sendEmail("\"" + yourName + "\" <" + yourMail + ">, \"林育慈\" <linyutsu23@gmail.com>", title, msg);
+    sheet.getRange(i+1, 1).setValue("v");
+  }
+};
+
