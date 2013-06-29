@@ -16,8 +16,6 @@ function readData() {
     
     if(done=="v")
       continue;
-    if(done=="-")
-      break;
     
     var title = "TEST Mail";
     var msg = 
