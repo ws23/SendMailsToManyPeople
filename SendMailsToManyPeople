@@ -1,9 +1,5 @@
 // Do on Google Apps Script
 
-/*使用說明：
-# 需在要使用的 spreadsheet 當中使用此 script
-*/
-
 function readData() {
   
   var URL = "https://docs.google.com/spreadsheet/ccc?key=0AlG5gahg7gj-dFo3NUlCVUlxUS1nQVMwRklzbWdNbGc";
