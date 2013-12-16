@@ -5,32 +5,49 @@
 */
 
 function readData() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var data = sheet.getDataRange().getValues();
   
-  for (var i = 1; i < data.length; i++) {
-    var done = sheet.getRange(i+1, 1).getValue();
-    var yourName = sheet.getRange(i+1, 2).getValue();
-    var yourMail = sheet.getRange(i+1, 3).getValue();
-    var yourTeam = sheet.getRange(i+1, 4).getValue();
-    var yourLeader = sheet.getRange(i+1, 5).getValue();
-    var yourMember = sheet.getRange(i+1, 6).getValue();
+  var URL = "https://docs.google.com/spreadsheet/ccc?key=0AlG5gahg7gj-dFo3NUlCVUlxUS1nQVMwRklzbWdNbGc";
+  
+  var sheets = SpreadsheetApp.openByUrl(URL).getSheets();
+  var sheetList = sheets[0];
+  var dataList = sheetList.getDataRange().getValues();
+
+  
+  for (var i = 1; i < dataList.length; i++) {
+    var done = sheetList.getRange(i+1, 6).getValue();
+    var yourName = sheetList.getRange(i+1, 3).getValue();
+    var yourMail = sheetList.getRange(i+1, 4).getValue();
+
     
     if(done=="v")
       continue;
     
-    var title = "TEST Mail";
-    var msg = 
-        "This is a test\n" +
-        "Name: " + yourName + "\n" +
-        "Mail: " + yourMail + "\n" +
-        "Team: " + yourTeam + "\n" +
-        "Lead: " + yourLeader + "\n" + 
-        "Member: " + yourMember + "\n" + 
-        "Thank!!" ;
+    var title = "[資訊安全講座] 意見回饋調查表";
+    
+    var msg =
+ 
+        yourName + "您好，\n\n" + 
+    
+    "感謝您參與今日講座，希望能撥冗填寫一下回饋意見調查表，您的參與與回饋，會使系學會更加進步的，謝謝！\n\n" +
+
+"回饋表：http://goo.gl/ijD9ub\n\n"+
+
+"另，許多人來向系學會索取講師之投影片，在我們向講師取得時，會第一時間公佈給大家的，謝謝！\n\n" +
+   /* "12/12（四）的「臺灣3D動畫技術人員職場現況座談會」即將舉行，在此提醒您，活動將於當日12：00開始，敬備便當，還請準時出席，謝謝。\n\n" + 
+      
+      "講座時間：12/12（四） 12：00 ～ 14：00\n" + 
+      "講座地點：理工二館 A337 教室\n" +
+      "講題：臺灣3D動畫技術人員職場現況座談會\n" +
+      "講者：連寬益 講師\n\n" +
+*/
+"--\n"+
+"東華資工系學會 網管 林育慈\n"+
+"http://csiesa.csie.ndhu.edu.tw\n"+
+" 0953-381-533\n"+
+"ndhucsiesa@gmail.com";
          
-    MailApp.sendEmail("\"" + yourName + "\" <" + yourMail + ">, \"林育慈\" <linyutsu23@gmail.com>", title, msg);
-    sheet.getRange(i+1, 1).setValue("v");
+    MailApp.sendEmail("\"" + yourName + "\" <" + yourMail + ">, \"東華資工系學會\" <ndhucsiesa@gmail.com>", title, msg);
+    sheetList.getRange(i+1, 6).setValue("v");
   }
 };
 
